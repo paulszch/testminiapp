@@ -1,0 +1,43 @@
+<!-- mini-app/index.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mini Map Bot</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #000; color: #fff; padding: 20px; text-align: center; }
+    button { padding: 12px 24px; font-size: 18px; margin: 10px; background: #0088cc; border: none; color: white; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>🗺️ Mini Map / Dashboard</h1>
+  <p>Selamat datang di Mini Map!</p>
+  
+  <button onclick="goToListProduct()">Lihat List Product</button>
+  <button onclick="goToTopBuyer()">Top 5 Buyer</button>
+  <button onclick="Telegram.WebApp.close()">Tutup</button>
+
+  <script>
+    // Inisialisasi Mini App
+    Telegram.WebApp.ready();
+    Telegram.WebApp.expand(); // full screen
+
+    // Contoh ambil data user dari Telegram
+    const user = Telegram.WebApp.initDataUnsafe.user;
+    console.log("User:", user);
+
+    function goToListProduct() {
+      // Bisa kirim data ke bot via postEvent atau langsung close + trigger command
+      Telegram.WebApp.sendData("list_product"); // ini akan dikirim ke bot
+      Telegram.WebApp.close();
+    }
+
+    function goToTopBuyer() {
+      Telegram.WebApp.sendData("top_buyer");
+      Telegram.WebApp.close();
+    }
+  </script>
+</body>
+</html>
